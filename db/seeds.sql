@@ -1,3 +1,5 @@
+USE business_db;
+
 INSERT INTO department (id, d_name)
 VALUES ('Engineering'),
        ('Marketing'),
