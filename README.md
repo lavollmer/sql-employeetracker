@@ -15,3 +15,5 @@ U of MN tutoring services were used to assist with this homework. The tutor and 
 Case and switch logic was inspired by : https://www.w3schools.com/js/js_switch.asp
 
 Table package: https://www.npmjs.com/package/table
+
+AskBCS was used to figure out the connection.js file with a Mac computer.

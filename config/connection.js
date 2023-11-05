@@ -18,4 +18,4 @@ const db = mysql.createConnection(
 db.connect();
 
 //export db
-module.exports = { db };
+module.exports = db;

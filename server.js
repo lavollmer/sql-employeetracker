@@ -6,7 +6,7 @@ const app = express();
 const inquirer = require('inquirer');
 
 //requiring table in
-const table = require('table');
+const table = require("table");
 
 //import business db
 const db = require('./config/connection');
@@ -55,4 +55,13 @@ const db = require('./config/connection');
 //   });
 
 
-db.query('SELECT * FROM department', (err, data) => err ? console.log(err) : console.log(data))
+const query = 'SELECT * FROM department';
+
+db.query(query, (err, data) => {
+  if (err) {
+    console.log("err");
+    return;
+  } else {
+    console.log(table(data));
+  }
+});
