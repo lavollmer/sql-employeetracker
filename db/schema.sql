@@ -1,12 +1,12 @@
-DROP DATABASE IF EXISTS movies_db;
-CREATE DATABASE movies_db;
+DROP DATABASE IF EXISTS business_db;
+CREATE DATABASE business_db;
 
-USE movies_db;
+USE business_db;
 
 -- create table department --
 CREATE TABLE department (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  movie_name VARCHAR(30) NOT NULL
+  name VARCHAR(30) NOT NULL
 );
 
 -- create table role --
