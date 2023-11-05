@@ -8,6 +8,12 @@ const inquirer = require('inquirer');
 //import table package
 import { table } from 'table';
 
+//import business db
+import { business } from ("./config/connection.js")
+
+// Import and require mysql2
+const mysql = require('mysql2');
+
 // inquirer prompt to ask questions
 inquirer.prompt([
   {
@@ -40,3 +46,10 @@ inquirer.prompt([
       default:
     }
   });
+
+
+
+// Query database
+// db.query('SELECT * FROM students', function (err, results) {
+//   console.log(results);
+// });
