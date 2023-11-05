@@ -18,37 +18,23 @@ inquirer.prompt([
     type: 'list',
     message: 'What would you like to do',
     name: 'mainMenu',
-    choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
+    choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
   }]).then(answers => {
     //case and switch statement with mainMenu choices
     switch (answers.mainMenu) {
       case 'All departments':
-        const queryOne = 'SELECT * FROM department';
-        connection.query(queryOne, (err, data) => {
-          if (err) {
-            console.log("err");
-            return;
-          } else {
-            console.log(printTable(data));
-            return;
-          }
-        });
+        viewDepartment();
         break;
       case 'All Employees':
-        const queryTwo = 'SELECT * FROM employee';
-        connection.query(queryTwo, (err, data) => {
-          if (err) {
-            console.log("err");
-            return;
-          } else {
-            console.log(printTable(data));
-          }
-        });
+        viewEmployee();
         break;
       case 'Add a department':
 
         break;
       case 'Add a role':
+
+        break;
+      case 'Remove employee':
 
         break;
       case 'Add an employee':
@@ -57,18 +43,36 @@ inquirer.prompt([
       case 'Update an employee role':
 
         break;
+      case 'Update an manager role':
+
+        break;
       default:
     }
   });
 
+//viewDepartment
+function viewDepartment() {
+  const queryOne = 'SELECT * FROM department';
+  connection.query(queryOne, (err, data) => {
+    if (err) {
+      console.log("err");
+      return;
+    } else {
+      console.log(printTable(data));
+      return;
+    }
+  })
+};
 
-// const query = 'SELECT * FROM department';
-
-// connection.query(query, (err, data) => {
-//   if (err) {
-//     console.log("err");
-//     return;
-//   } else {
-//     console.log(printTable(data));
-//   }
-// });
+//viewEmployee
+function viewEmployee() {
+  const queryTwo = 'SELECT * FROM employee';
+  connection.query(queryTwo, (err, data) => {
+    if (err) {
+      console.log("err");
+      return;
+    } else {
+      console.log(printTable(data));
+    }
+  });
+}
