@@ -5,6 +5,9 @@ const app = express();
 //inquirer package
 const inquirer = require('inquirer');
 
+//import table package
+import { table } from 'table';
+
 // inquirer prompt to ask questions
 inquirer.prompt([
   {
@@ -14,47 +17,26 @@ inquirer.prompt([
     name: 'mainMenu',
     choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
   }]).then(answers => {
-    switch (mainMenu.choices) {
-      case x:
+    //case and switch statement with mainMenu choices
+    switch (answers.mainMenu.choices) {
+      case 'All departments':
 
         break;
-      case y:
+      case 'All Employees':
+
+        break;
+      case 'Add a department':
+
+        break;
+      case 'Add a role':
+
+        break;
+      case 'Add an employee':
+
+        break;
+      case 'Update an employee role':
 
         break;
       default:
     }
-
-
-
-
-
-
-
-
-
-
-    //store inquirer prompt to get answers in function prompt
-    function prompt() {
-      return inquirer.prompt(questions).then(answers => {
-        console.log(answers);
-        return answers;
-      })
-    }
-
-    // TODO: Create a function to write README file
-    // writeFile to README.md using answers
-    function writeToFile(answers) {
-      fs.writeFile('README.md', answers, (err) =>
-        err ? console.error(err) : console.log('Finished!'))
-    }
-
-    // TODO: Create a function to initialize app
-    // Use answers in generateMarkdown function to writeToFile
-    function init() {
-      return prompt().then(answers => {
-        writeToFile(generateMarkdown(answers))
-      })
-    }
-
-    // Function call to initialize app
-    init();
+  });
