@@ -6,7 +6,7 @@ const app = express();
 const { inquirer } = require('inquirer');
 
 //requiring table in
-const { table } = require("table");
+const { printTable } = require('console-table-printer');
 
 //import business db
 const connection = require('./config/connection');
@@ -62,6 +62,6 @@ connection.query(query, (err, data) => {
     console.log("err");
     return;
   } else {
-    console.log(table(data));
+    console.log(printTable(data));
   }
 });
