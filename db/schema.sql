@@ -33,4 +33,4 @@ SELECT r.title, e.first_name
 -- from role table --
 FROM role r
 -- inner join employee table on role id with role table id and employee table role id
-INNER JOIN employee e ON role_id = e.role_id
+INNER JOIN employee e ON role_id = e.role_id;
