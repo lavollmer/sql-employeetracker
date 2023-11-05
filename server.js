@@ -3,10 +3,10 @@ const express = require("express");
 const app = express();
 
 //inquirer package
-const inquirer = require('inquirer');
+const { inquirer } = require('inquirer');
 
 //requiring table in
-const table = require("table");
+const { table } = require("table");
 
 //import business db
 const db = require('./config/connection');
