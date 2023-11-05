@@ -57,7 +57,7 @@ function viewDepartment() {
   const query = 'SELECT * FROM department';
   connection.query(query, (err, data) => {
     if (err) {
-      console.log("err");
+      console.log(err.message);
       return;
     } else {
       console.log(printTable(data));
@@ -71,7 +71,7 @@ function viewEmployee() {
   const query = 'SELECT * FROM employee';
   connection.query(query, (err, data) => {
     if (err) {
-      console.log("err");
+      console.log(err.message);
       return;
     } else {
       console.log(printTable(data));
@@ -79,17 +79,17 @@ function viewEmployee() {
   });
 }
 
-// function addDepartment() {
-//   inquirer.prompt[{
-//     type: 'list',
-//     message: 'What would you like to do',
-//     name: 'mainMenu',
-//     choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
-//   }]
-// }.then(answers => {
-// })
 
+//addRole function
 function addRole() {
+  //add interger values to department names for query
+  const choices = [
+    { name: "Engineering", value: "1" },
+    { name: "Marketing", value: "2" },
+    { name: "Finance", value: "3" },
+    { name: "Sales", value: "4" }
+  ]
+  //prompt for user for more additional information
   inquirer.prompt([
     {
       type: 'input',
@@ -100,16 +100,18 @@ function addRole() {
       message: 'What is the salary of the role?',
       name: 'salaryNewRole'
     }, {
-      type: 'rawlist',
+      type: 'list',
       message: 'What department does the role belong to?',
       name: 'deptNewRole',
-      choices: ["Engineering", "Marketing", "Finance", "Sales"]
+      choices: choices
     }
   ]).then(answers => {
-    const query = `INSERT INTO role VALUES ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
+    //query to run to insert information
+    const query = `INSERT INTO role (title, salary, department_id) VALUES ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
+    //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
-        console.log("err");
+        console.log(err.message);
         return;
       } else {
         start();
