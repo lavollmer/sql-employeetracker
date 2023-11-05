@@ -5,11 +5,11 @@ const app = express();
 //inquirer package
 const inquirer = require('inquirer');
 
-//import table package
-import { table } from 'table';
+//requiring table in
+const table = require('table');
 
 //import business db
-const db = require("./config/connection.js");
+const db = require('./config/connection.js');
 
 // Import and require mysql2
 const mysql = require('mysql2');
@@ -24,7 +24,7 @@ inquirer.prompt([
     choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
   }]).then(answers => {
     //case and switch statement with mainMenu choices
-    switch (answers.mainMenu.choices) {
+    switch (answers.mainMenu) {
       case 'All departments':
         db.query('SELECT * FROM department', function (err, results) {
           if (err) {
