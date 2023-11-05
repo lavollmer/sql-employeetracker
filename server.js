@@ -15,9 +15,14 @@ inquirer.prompt([
     choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
   }]).then(answers => {
     switch (mainMenu.choices) {
+      case x:
 
+        break;
+      case y:
+
+        break;
+      default:
     }
-  }
 
 
 
