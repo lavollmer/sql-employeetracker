@@ -13,9 +13,11 @@ inquirer.prompt([
     message: 'What would you like to do',
     name: 'mainMenu',
     choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
-  )].then(answers => {
+  }]).then(answers => {
+    switch (mainMenu.choices) {
 
     }
+  }
 
 
 
@@ -26,28 +28,28 @@ inquirer.prompt([
 
 
 
-//store inquirer prompt to get answers in function prompt
-function prompt() {
-        return inquirer.prompt(questions).then(answers => {
-          console.log(answers);
-          return answers;
-        })
-      }
+    //store inquirer prompt to get answers in function prompt
+    function prompt() {
+      return inquirer.prompt(questions).then(answers => {
+        console.log(answers);
+        return answers;
+      })
+    }
 
-// TODO: Create a function to write README file
-// writeFile to README.md using answers
-function writeToFile(answers) {
-        fs.writeFile('README.md', answers, (err) =>
-          err ? console.error(err) : console.log('Finished!'))
-      }
+    // TODO: Create a function to write README file
+    // writeFile to README.md using answers
+    function writeToFile(answers) {
+      fs.writeFile('README.md', answers, (err) =>
+        err ? console.error(err) : console.log('Finished!'))
+    }
 
-// TODO: Create a function to initialize app
-// Use answers in generateMarkdown function to writeToFile
-function init() {
-        return prompt().then(answers => {
-          writeToFile(generateMarkdown(answers))
-        })
-      }
+    // TODO: Create a function to initialize app
+    // Use answers in generateMarkdown function to writeToFile
+    function init() {
+      return prompt().then(answers => {
+        writeToFile(generateMarkdown(answers))
+      })
+    }
 
-// Function call to initialize app
-init();
+    // Function call to initialize app
+    init();
