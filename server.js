@@ -11,9 +11,6 @@ const table = require('table');
 //import business db
 const db = require('./config/connection.js');
 
-// Import and require mysql2
-const mysql = require('mysql2');
-
 // inquirer prompt to ask questions
 inquirer.prompt([
   {
@@ -26,13 +23,15 @@ inquirer.prompt([
     //case and switch statement with mainMenu choices
     switch (answers.mainMenu) {
       case 'All departments':
-        db.query('SELECT * FROM department', function (err, results) {
+        db.execute('SELECT * FROM department', function (err, results) {
           if (err) {
             //err message
             console.log("This is an error");
+            return;
           } else {
             //table the results
             console.log(table(results));
+            return;
           }
         });
         break;
