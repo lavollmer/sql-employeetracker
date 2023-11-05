@@ -29,10 +29,10 @@ inquirer.prompt([
         viewEmployee();
         break;
       case 'Add a department':
-
+        addDepartment();
         break;
       case 'Add a role':
-
+        addRole();
         break;
       case 'Remove employee':
 
@@ -52,8 +52,8 @@ inquirer.prompt([
 
 //viewDepartment
 function viewDepartment() {
-  const queryOne = 'SELECT * FROM department';
-  connection.query(queryOne, (err, data) => {
+  const query = 'SELECT * FROM department';
+  connection.query(query, (err, data) => {
     if (err) {
       console.log("err");
       return;
@@ -66,8 +66,8 @@ function viewDepartment() {
 
 //viewEmployee
 function viewEmployee() {
-  const queryTwo = 'SELECT * FROM employee';
-  connection.query(queryTwo, (err, data) => {
+  const query = 'SELECT * FROM employee';
+  connection.query(query, (err, data) => {
     if (err) {
       console.log("err");
       return;
@@ -75,4 +75,41 @@ function viewEmployee() {
       console.log(printTable(data));
     }
   });
+}
+
+// function addDepartment() {
+//   inquirer.prompt[{
+//     type: 'list',
+//     message: 'What would you like to do',
+//     name: 'mainMenu',
+//     choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
+//   }]
+// }.then(answers => {
+// })
+
+function addRole() {
+  inquirer.prompt([{
+    type: 'input',
+    message: 'What is the name of the role?',
+    name: 'roleName'
+  }, {
+    type: 'input',
+    message: 'What is the salary of the role?',
+    name: 'salaryNewRole'
+  }, {
+    type: 'list',
+    message: 'What department does the role belong to?',
+    name: 'deptNewRole',
+    choices: ["Engineering", "Marketing", "Finance", "Sales"]
+  }]).then(answers => {
+    const query = `INSERT INTO role VALUES ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
+    connection.query(query, (err, data) => {
+      if (err) {
+        console.log("err");
+        return;
+      } else {
+        console.log(printTable(data));
+      }
+    });
+  })
 }
