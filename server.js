@@ -27,8 +27,14 @@ inquirer.prompt([
     switch (answers.mainMenu.choices) {
       case 'All departments':
         db.query('SELECT * FROM department', function (err, results) {
-
-        })
+          if (err) {
+            //err message
+            console.log("This is an error");
+          } else {
+            //table the results
+            console.log(table(results));
+          }
+        });
         break;
       case 'All Employees':
 
