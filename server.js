@@ -23,8 +23,20 @@ inquirer.prompt([
     //case and switch statement with mainMenu choices
     switch (answers.mainMenu) {
       case 'All departments':
-        const query = 'SELECT * FROM department';
-        connection.query(query, (err, data) => {
+        const queryOne = 'SELECT * FROM department';
+        connection.query(queryOne, (err, data) => {
+          if (err) {
+            console.log("err");
+            return;
+          } else {
+            console.log(printTable(data));
+            return;
+          }
+        });
+        break;
+      case 'All Employees':
+        const queryTwo = 'SELECT * FROM employee';
+        connection.query(queryTwo, (err, data) => {
           if (err) {
             console.log("err");
             return;
@@ -32,9 +44,6 @@ inquirer.prompt([
             console.log(printTable(data));
           }
         });
-        break;
-      case 'All Employees':
-
         break;
       case 'Add a department':
 
@@ -53,13 +62,13 @@ inquirer.prompt([
   });
 
 
-const query = 'SELECT * FROM department';
+// const query = 'SELECT * FROM department';
 
-connection.query(query, (err, data) => {
-  if (err) {
-    console.log("err");
-    return;
-  } else {
-    console.log(printTable(data));
-  }
-});
+// connection.query(query, (err, data) => {
+//   if (err) {
+//     console.log("err");
+//     return;
+//   } else {
+//     console.log(printTable(data));
+//   }
+// });
