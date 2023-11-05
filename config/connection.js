@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 require("dotenv").config()
 
 // Connect to business database
-const db = mysql.createConnection(
+const connection = mysql.createConnection(
   {
     host: 'localhost',
     // env variables
@@ -14,8 +14,14 @@ const db = mysql.createConnection(
   },
 );
 
-//connect database
-db.connect();
+//connect database and throw error is not connected
+connection.connect(function (err) {
+  if (err) {
+    console.log("error with connection");
+  } else {
+    console.log("Database business is connnected.");
+  }
+});
 
 //export db
-module.exports = db;
+module.exports = connection;

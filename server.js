@@ -9,7 +9,7 @@ const { inquirer } = require('inquirer');
 const { table } = require("table");
 
 //import business db
-const db = require('./config/connection');
+const connection = require('./config/connection');
 
 // inquirer prompt to ask questions
 // inquirer.prompt([
@@ -57,7 +57,7 @@ const db = require('./config/connection');
 
 const query = 'SELECT * FROM department';
 
-db.query(query, (err, data) => {
+connection.query(query, (err, data) => {
   if (err) {
     console.log("err");
     return;
