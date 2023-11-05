@@ -6,7 +6,7 @@ require("dotenv").config()
 // Connect to business database
 const db = mysql.createConnection(
   {
-    host: process.env.HOST,
+    host: 'localhost',
     // env variables
     user: process.env.USER,
     password: process.env.DB_PASSWORD,
