@@ -18,6 +18,7 @@
     "inquirer": "^8.2.4",
     "mysql2": "^3.6.3",
     "node.js": "^0.0.1-security",
+    "prompt-rawlist": "^2.0.1",
     "sequelize": "^6.34.0"
   }
 }

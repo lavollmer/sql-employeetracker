@@ -90,20 +90,22 @@ function viewEmployee() {
 // })
 
 function addRole() {
-  inquirer.prompt([{
-    type: 'input',
-    message: 'What is the name of the role?',
-    name: 'roleName'
-  }, {
-    type: 'input',
-    message: 'What is the salary of the role?',
-    name: 'salaryNewRole'
-  }, {
-    type: 'list',
-    message: 'What department does the role belong to?',
-    name: 'deptNewRole',
-    choices: ["Engineering", "Marketing", "Finance", "Sales"]
-  }]).then(answers => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'What is the name of the role?',
+      name: 'roleName'
+    }, {
+      type: 'input',
+      message: 'What is the salary of the role?',
+      name: 'salaryNewRole'
+    }, {
+      type: 'rawlist',
+      message: 'What department does the role belong to?',
+      name: 'deptNewRole',
+      choices: ["Engineering", "Marketing", "Finance", "Sales"]
+    }
+  ]).then(answers => {
     const query = `INSERT INTO role VALUES ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
     connection.query(query, (err, data) => {
       if (err) {
@@ -113,7 +115,7 @@ function addRole() {
         start();
       }
     });
-  })
+  });
 }
 
 

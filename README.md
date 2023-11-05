@@ -16,4 +16,6 @@ Case and switch logic was inspired by : https://www.w3schools.com/js/js_switch.a
 
 Table package: https://www.npmjs.com/package/console-table-printer
 
+Rawlist Code: https://www.npmjs.com/package/prompt-rawlist
+
 AskBCS was used to figure out the connection.js file with a Mac computer.
