@@ -12,43 +12,45 @@ const { printTable } = require('console-table-printer');
 const connection = require('./config/connection');
 
 // inquirer prompt to ask questions
-inquirer.prompt([
-  {
-    //THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-    type: 'list',
-    message: 'What would you like to do',
-    name: 'mainMenu',
-    choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
-  }]).then(answers => {
-    //case and switch statement with mainMenu choices
-    switch (answers.mainMenu) {
-      case 'All departments':
-        viewDepartment();
-        break;
-      case 'All Employees':
-        viewEmployee();
-        break;
-      case 'Add a department':
-        addDepartment();
-        break;
-      case 'Add a role':
-        addRole();
-        break;
-      case 'Remove employee':
+function start() {
+  inquirer.prompt([
+    {
+      //THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
+      type: 'list',
+      message: 'What would you like to do',
+      name: 'mainMenu',
+      choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
+    }]).then(answers => {
+      //case and switch statement with mainMenu choices
+      switch (answers.mainMenu) {
+        case 'All departments':
+          viewDepartment();
+          break;
+        case 'All Employees':
+          viewEmployee();
+          break;
+        case 'Add a department':
+          addDepartment();
+          break;
+        case 'Add a role':
+          addRole();
+          break;
+        case 'Remove employee':
 
-        break;
-      case 'Add an employee':
+          break;
+        case 'Add an employee':
 
-        break;
-      case 'Update an employee role':
+          break;
+        case 'Update an employee role':
 
-        break;
-      case 'Update an manager role':
+          break;
+        case 'Update an manager role':
 
-        break;
-      default:
-    }
-  });
+          break;
+        default:
+      }
+    })
+};
 
 //viewDepartment
 function viewDepartment() {
@@ -108,8 +110,12 @@ function addRole() {
         console.log("err");
         return;
       } else {
-        console.log(printTable(data));
+        start();
       }
     });
   })
 }
+
+
+//start the app
+start();
