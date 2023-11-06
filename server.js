@@ -12,7 +12,7 @@ function start() {
       type: 'list',
       message: 'What would you like to do',
       name: 'mainMenu',
-      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View All Employees by Department", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -39,6 +39,9 @@ function start() {
           break;
         case 'Update an employee role':
           updateRole();
+          break;
+        case 'View All Employees by Department':
+          viewEmployeeByDept();
           break;
       }
     })
@@ -317,6 +320,21 @@ function updateRole() {
         start();
       }
     });
+  });
+}
+
+
+//viewEmployeeByDept
+function viewEmployeeByDept() {
+  const query = 'SELECT department, COUNT(id) AS employee_number FROM employee GROUP BY (first_name, last_name)';
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.log(err.message);
+      return;
+    } else {
+      console.table(data);
+      start();
+    }
   });
 }
 
