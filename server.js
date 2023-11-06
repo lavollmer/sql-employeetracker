@@ -1,7 +1,3 @@
-//requiring in express
-const express = require("express");
-const app = express();
-
 //inquirer package
 const inquirer = require('inquirer');
 
