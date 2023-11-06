@@ -12,7 +12,7 @@ function start() {
       type: 'list',
       message: 'What would you like to do',
       name: 'mainMenu',
-      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View All Employees by Department", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View All Employees by Department", "View total budget of business", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -42,6 +42,9 @@ function start() {
           break;
         case 'View All Employees by Department':
           viewEmployeeByDept();
+          break;
+        case 'View total budget of business':
+          viewTotalBudget();
           break;
       }
     })
@@ -327,6 +330,20 @@ function updateRole() {
 //viewEmployeeByDept
 function viewEmployeeByDept() {
   const query = 'SELECT role_id, COUNT(id) AS employee_number FROM employee GROUP BY role_id';
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.log(err.message);
+      return;
+    } else {
+      console.table(data);
+      start();
+    }
+  });
+}
+
+//viewTotalBudget
+function viewTotalBudget() {
+  const query = 'SELECT sum(salary) FROM role';
   connection.query(query, (err, data) => {
     if (err) {
       console.log(err.message);
