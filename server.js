@@ -326,7 +326,7 @@ function updateRole() {
 
 //viewEmployeeByDept
 function viewEmployeeByDept() {
-  const query = 'SELECT department, COUNT(id) AS employee_number FROM employee GROUP BY (first_name, last_name)';
+  const query = 'SELECT role_id, COUNT(id) AS employee_number FROM employee GROUP BY role_id';
   connection.query(query, (err, data) => {
     if (err) {
       console.log(err.message);
