@@ -42,10 +42,10 @@ function start() {
           removeEmployee();
           break;
         case 'Update an employee role':
-
+          updateRole();
           break;
         case 'Update an manager role':
-
+          updateManagerRole();
           break;
         default:
       }
@@ -61,7 +61,7 @@ function viewDepartment() {
       return;
     } else {
       console.log(printTable(data));
-      return;
+      start();
     }
   })
 };
@@ -75,6 +75,7 @@ function viewEmployee() {
       return;
     } else {
       console.log(printTable(data));
+      start();
     }
   });
 }
@@ -242,6 +243,62 @@ function removeEmployee() {
   ]).then(answers => {
     //query to run to insert information
     const query = `DELETE FROM employee (first_name, last_name, role_id, manager_id) WHICH ("${answers.firstName}","${answers.lastname}", "${answers.deptRole}", "${answers.managerEmployee}")`;
+    //running the query in the database
+    connection.query(query, (err, data) => {
+      if (err) {
+        console.log(err.message);
+        return;
+      } else {
+        start();
+      }
+    });
+  });
+}
+
+function updateRole() {
+  //add interger values to department names for query
+  const choices = [
+    { name: "Engineering", value: "1" },
+    { name: "Marketing", value: "2" },
+    { name: "Finance", value: "3" },
+    { name: "Sales", value: "4" }
+  ]
+  //prompt for user for more additional information
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'What is the name of the role?',
+      name: 'roleName'
+    },
+    {
+      type: 'input',
+      message: 'What is the name of the new role?',
+      name: 'roleNewName'
+    },
+    {
+      type: 'input',
+      message: 'What is the salary of the current role?',
+      name: 'salaryOldRole'
+    },
+    {
+      type: 'input',
+      message: 'What is the new salary of the new role?',
+      name: 'salaryNewRole'
+    },
+    {
+      type: 'list',
+      message: 'What department does the role belong to?',
+      name: 'deptOldRole',
+      choices: choices
+    }, {
+      type: 'list',
+      message: 'What department does the new role belong to?',
+      name: 'deptNewRole',
+      choices: choices
+    }
+  ]).then(answers => {
+    //query to run to insert information
+    const query = `UPDATE role SET title="${answers.roleNewName}", salary="${answers.salaryNewRole}", department_id="${answers.deptNewRole}" WHERE title="${answers.roleName}", salary="${answers.salaryOldRole}", department_id="${answers.deptOldRole}" `;
     //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
