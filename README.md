@@ -17,9 +17,11 @@ Technical requirements of this project included:
 
 ## Usage
 
-Screenshots of Project:
-
 Video Submission:
+
+Screenshots of Home Page:![Screenshot of Project](./img/HomePage.png)
+
+Screenshots of Table:![Screenshot of Table](./img/ViewAllDepartments.png)
 
 Github Link: https://github.com/lavollmer/sql-employeetracker
 
@@ -37,3 +39,15 @@ Print Table package: https://www.npmjs.com/package/console-table-printer
 ASCII: https://stackoverflow.com/questions/94037/convert-character-to-ascii-code-in-javascript
 
 AskBCS was used to figure out the connection.js file with a Mac computer.
+
+Tutor helped with code in schema.sql: 
+-- select role table title and employee table first name
+SELECT r.title, e.first_name
+-- from employee table --
+FROM employee e
+-- inner join employee table on role id with role table id and employee table role id
+INNER JOIN role r ON r.id = e.role_id
+-- join department table to role table --
+INNER JOIN department d ON d.id = r.department_id
+-- waiting for end user to determine what department --
+WHERE d.id = ?

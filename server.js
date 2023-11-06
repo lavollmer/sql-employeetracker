@@ -15,7 +15,7 @@ function start() {
       type: 'list',
       message: "Please select from following:",
       name: 'mainMenu',
-      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View Employees Based on Department", "View Total Utilized Budget of Business", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View Number of Employees Based on Department", "View Total Utilized Budget of Business", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -43,7 +43,7 @@ function start() {
         case 'Update an employee role':
           updateRole();
           break;
-        case 'View Employees Based on Department':
+        case 'View Number of Employees Based on Department':
           viewEmployeeByDept();
           break;
         case 'View Total Utilized Budget of Business':
@@ -341,12 +341,12 @@ function viewEmployeeByDept() {
       inquirer.prompt([
         {
           type: 'list',
-          message: 'What department would you like to view employees in?',
+          message: 'What department would you like to view the number of employees in?',
           name: 'deptViewEmployees',
           choices: data
         }
       ]).then(answers =>
-        console.table(answers)
+        console.log("The number of employees per department") + console.table(answers)
       )
     }
   });
@@ -368,13 +368,3 @@ function viewTotalBudget() {
 
 //start the app
 start();
-
-// inquirer.prompt([
-//   {
-//     type: 'list',
-//     message: 'What would you like to do?',
-//     name: 'mainMenu',
-//     choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View All Employees by Department", "View Total Utilized Budget of Business", "Quit"]
-//   }]).then(answers => {
-//     console.log(answers);
-//   })
