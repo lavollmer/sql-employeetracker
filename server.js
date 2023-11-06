@@ -19,11 +19,11 @@ function start() {
       type: 'list',
       message: 'What would you like to do',
       name: 'mainMenu',
-      choices: ["All departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
+      choices: ["All Departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
-        case 'All departments':
+        case 'All Departments':
           viewDepartment();
           break;
         case 'All Employees':
@@ -35,10 +35,10 @@ function start() {
         case 'Add a role':
           addRole();
           break;
-        case 'Remove employee':
-
-          break;
         case 'Add an employee':
+          addEmployee();
+          break;
+        case 'Remove employee':
 
           break;
         case 'Update an employee role':
@@ -89,7 +89,7 @@ function addDepartment() {
       name: 'newDepartment'
     }
   ]).then(answers => {
-    //query to run to insert information
+    //query to run to insert new department information
     const query = `INSERT INTO department (d_name) VALUES ("${answers.newDepartment}")`;
     //running the query in the database
     connection.query(query, (err, data) => {
@@ -131,6 +131,61 @@ function addRole() {
   ]).then(answers => {
     //query to run to insert information
     const query = `INSERT INTO role (title, salary, department_id) VALUES ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
+    //running the query in the database
+    connection.query(query, (err, data) => {
+      if (err) {
+        console.log(err.message);
+        return;
+      } else {
+        start();
+      }
+    });
+  });
+}
+
+//addEmployee function
+function addEmployee() {
+  //add interger values to department names for query
+  const choices = [
+    { name: "Engineering", value: "1" },
+    { name: "Marketing", value: "2" },
+    { name: "Finance", value: "3" },
+    { name: "Sales", value: "4" }
+  ]
+  const manager = [
+    { name: "Denise Letter", value: "1" },
+    { name: "Patricia Puzzles", value: "2" },
+    { name: "Jake Jaens", value: "3" },
+    { name: "Louise Loeide", value: "4" },
+    { name: "Sam Square", value: "5" },
+    { name: "Olive Owenser", value: "6" },
+    { name: "Rita Swan", value: "7" }
+  ]
+  //prompt for user for more additional information
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'What is the first name of the new employee?',
+      name: 'firstName'
+    }, {
+      type: 'input',
+      message: 'What is the last name of the new employee?',
+      name: 'lastName'
+    }, {
+      type: 'list',
+      message: 'What department does the role belong to?',
+      name: 'deptRole',
+      choices: choices
+    },
+    {
+      type: 'list',
+      message: 'Who is the manager of the new employee?',
+      name: 'managerEmployee',
+      choices: manager
+    }
+  ]).then(answers => {
+    //query to run to insert information
+    const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${answers.firstName}","${answers.lastname}", "${answers.deptRole}", "${answers.managerEmployee}")`;
     //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
