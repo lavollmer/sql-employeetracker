@@ -19,7 +19,7 @@ function start() {
       type: 'list',
       message: 'What would you like to do',
       name: 'mainMenu',
-      choices: ["All Departments", "All Employees", "Add a department", "Add a role", "Add an employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
+      choices: ["All Departments", "All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -35,11 +35,11 @@ function start() {
         case 'Add a role':
           addRole();
           break;
-        case 'Add an employee':
+        case 'Add an Employee':
           addEmployee();
           break;
-        case 'Remove employee':
-          removeRole();
+        case 'Remove Employee':
+          removeEmployee();
           break;
         case 'Update an employee role':
 
@@ -198,8 +198,8 @@ function addEmployee() {
   });
 }
 
-//addRole function
-function removeRole() {
+//addEmployee function
+function removeEmployee() {
   //add interger values to department names for query
   const choices = [
     { name: "Engineering", value: "1" },
@@ -207,25 +207,41 @@ function removeRole() {
     { name: "Finance", value: "3" },
     { name: "Sales", value: "4" }
   ]
+  const manager = [
+    { name: "Denise Letter", value: "1" },
+    { name: "Patricia Puzzles", value: "2" },
+    { name: "Jake Jaens", value: "3" },
+    { name: "Louise Loeide", value: "4" },
+    { name: "Sam Square", value: "5" },
+    { name: "Olive Owenser", value: "6" },
+    { name: "Rita Swan", value: "7" }
+  ]
+
   //prompt for user for more additional information
   inquirer.prompt([
     {
       type: 'input',
-      message: 'What is the name of the role you would like to remove?',
-      name: 'roleName'
+      message: 'What is the first name of the employee you would like to remove?',
+      name: 'firstName'
     }, {
       type: 'input',
-      message: 'What is the salary of the role that is being removed?',
-      name: 'salaryNewRole'
+      message: 'What is the last name of the employee you would like to remove?',
+      name: 'lastName'
     }, {
       type: 'list',
       message: 'What department does the role belong to?',
-      name: 'deptNewRole',
+      name: 'deptRole',
       choices: choices
+    },
+    {
+      type: 'list',
+      message: 'Who is the manager of the new employee?',
+      name: 'managerEmployee',
+      choices: manager
     }
   ]).then(answers => {
     //query to run to insert information
-    const query = `DELETE FROM role (title, salary, department_id) WHERE ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
+    const query = `DELETE FROM employee (first_name, last_name, role_id, manager_id) WHICH ("${answers.firstName}","${answers.lastname}", "${answers.deptRole}", "${answers.managerEmployee}")`;
     //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
