@@ -1,9 +1,6 @@
 //inquirer package
 const inquirer = require('inquirer');
 
-//requiring table in
-// const table = require('console-table-printer');
-
 //import business db
 const connection = require('./config/connection');
 
@@ -170,7 +167,8 @@ function addEmployee() {
     { name: "Louise Loeide", value: "4" },
     { name: "Sam Square", value: "5" },
     { name: "Olive Owenser", value: "6" },
-    { name: "Rita Swan", value: "7" }
+    { name: "Rita Swan", value: "7" },
+    { name: "None of the above", value: "8" }
   ]
   //prompt for user for more additional information
   inquirer.prompt([
@@ -225,7 +223,8 @@ function removeEmployee() {
     { name: "Louise Loeide", value: "4" },
     { name: "Sam Square", value: "5" },
     { name: "Olive Owenser", value: "6" },
-    { name: "Rita Swan", value: "7" }
+    { name: "Rita Swan", value: "7" },
+    { name: "None of the above", value: "8" }
   ]
 
   //prompt for user for more additional information
