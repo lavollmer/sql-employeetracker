@@ -21,7 +21,7 @@ Screenshots of Project:
 
 Video Submission:
 
-Github Link: 
+Github Link: https://github.com/lavollmer/sql-employeetracker
 
 
 ## Credits
