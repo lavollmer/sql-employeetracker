@@ -19,14 +19,17 @@ function start() {
       type: 'list',
       message: 'What would you like to do',
       name: 'mainMenu',
-      choices: ["All Departments", "All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
-        case 'All Departments':
+        case 'View All Departments':
           viewDepartment();
           break;
-        case 'All Employees':
+        case 'View All Roles':
+          viewRole();
+          break;
+        case 'View All Employees':
           viewEmployee();
           break;
         case 'Add a department':
@@ -43,9 +46,6 @@ function start() {
           break;
         case 'Update an employee role':
           updateRole();
-          break;
-        case 'Update an manager role':
-          updateManagerRole();
           break;
         default:
       }
@@ -65,6 +65,20 @@ function viewDepartment() {
     }
   })
 };
+
+//viewRole
+function viewRole() {
+  const query = 'SELECT * FROM role';
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.log(err.message);
+      return;
+    } else {
+      console.log(printTable(data));
+      start();
+    }
+  });
+}
 
 //viewEmployee
 function viewEmployee() {
