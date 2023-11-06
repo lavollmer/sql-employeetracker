@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 
 //requiring table in
-const { printTable } = require('console-table-printer');
+// const table = require('console-table-printer');
 
 //import business db
 const connection = require('./config/connection');
@@ -15,7 +15,7 @@ function start() {
       type: 'list',
       message: 'What would you like to do',
       name: 'mainMenu',
-      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "Update employee manager", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -43,7 +43,6 @@ function start() {
         case 'Update an employee role':
           updateRole();
           break;
-        default:
       }
     })
 };
@@ -56,8 +55,9 @@ function viewDepartment() {
       console.log(err.message);
       return;
     } else {
-      console.log(printTable(data));
+      console.table(data);
       start();
+      return;
     }
   })
 };
@@ -70,7 +70,7 @@ function viewRole() {
       console.log(err.message);
       return;
     } else {
-      console.log(printTable(data));
+      console.table(data);
       start();
     }
   });
@@ -84,7 +84,7 @@ function viewEmployee() {
       console.log(err.message);
       return;
     } else {
-      console.log(printTable(data));
+      console.table(data);
       start();
     }
   });

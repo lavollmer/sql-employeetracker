@@ -6,7 +6,7 @@ USE business_db;
 -- create table department --
 CREATE TABLE department (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  d_name VARCHAR(30) NOT NULL
+  d_name VARCHAR(50) NOT NULL
 );
 
 -- create table role --
