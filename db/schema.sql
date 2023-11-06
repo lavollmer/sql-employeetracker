@@ -31,7 +31,11 @@ CREATE TABLE employee (
 
 -- select role table title and employee table first name
 SELECT r.title, e.first_name
--- from role table --
-FROM role r
+-- from employee table --
+FROM employee e
 -- inner join employee table on role id with role table id and employee table role id
-INNER JOIN employee e ON role_id = e.role_id;
+INNER JOIN role r ON r.id = e.role_id
+-- join department table to role table --
+INNER JOIN department d ON d.id = r.department_id
+-- waiting for end user to determine what department --
+WHERE d.id = ?

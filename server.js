@@ -4,15 +4,18 @@ const inquirer = require('inquirer');
 //import business db
 const connection = require('./config/connection');
 
+//employee manager design
+console.log("EMPLOYEE MANAGER");
+
 // inquirer prompt to ask questions
 function start() {
   inquirer.prompt([
     {
       //THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
       type: 'list',
-      message: 'What would you like to do',
+      message: "Please select from following:",
       name: 'mainMenu',
-      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View All Employees by Department", "View total budget of business", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View Employees Based on Department", "View Total Utilized Budget of Business", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -40,10 +43,10 @@ function start() {
         case 'Update an employee role':
           updateRole();
           break;
-        case 'View All Employees by Department':
+        case 'View Employees Based on Department':
           viewEmployeeByDept();
           break;
-        case 'View total budget of business':
+        case 'View Total Utilized Budget of Business':
           viewTotalBudget();
           break;
       }
@@ -329,14 +332,22 @@ function updateRole() {
 
 //viewEmployeeByDept
 function viewEmployeeByDept() {
-  const query = 'SELECT role_id, COUNT(id) AS employee_number FROM employee GROUP BY role_id';
+  const query = 'SELECT department.id AS value, department.d_name AS name FROM department';
   connection.query(query, (err, data) => {
     if (err) {
       console.log(err.message);
       return;
     } else {
-      console.table(data);
-      start();
+      inquirer.prompt([
+        {
+          type: 'list',
+          message: 'What department would you like to view employees in?',
+          name: 'deptViewEmployees',
+          choices: data
+        }
+      ]).then(answers =>
+        console.table(answers)
+      )
     }
   });
 }
@@ -357,3 +368,13 @@ function viewTotalBudget() {
 
 //start the app
 start();
+
+// inquirer.prompt([
+//   {
+//     type: 'list',
+//     message: 'What would you like to do?',
+//     name: 'mainMenu',
+//     choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View All Employees by Department", "View Total Utilized Budget of Business", "Quit"]
+//   }]).then(answers => {
+//     console.log(answers);
+//   })
