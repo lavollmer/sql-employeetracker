@@ -39,7 +39,7 @@ function start() {
           addEmployee();
           break;
         case 'Remove employee':
-
+          removeRole();
           break;
         case 'Update an employee role':
 
@@ -198,6 +198,45 @@ function addEmployee() {
   });
 }
 
+//addRole function
+function removeRole() {
+  //add interger values to department names for query
+  const choices = [
+    { name: "Engineering", value: "1" },
+    { name: "Marketing", value: "2" },
+    { name: "Finance", value: "3" },
+    { name: "Sales", value: "4" }
+  ]
+  //prompt for user for more additional information
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: 'What is the name of the role you would like to remove?',
+      name: 'roleName'
+    }, {
+      type: 'input',
+      message: 'What is the salary of the role that is being removed?',
+      name: 'salaryNewRole'
+    }, {
+      type: 'list',
+      message: 'What department does the role belong to?',
+      name: 'deptNewRole',
+      choices: choices
+    }
+  ]).then(answers => {
+    //query to run to insert information
+    const query = `DELETE FROM role (title, salary, department_id) WHERE ("${answers.roleName}","${answers.salaryNewRole}", "${answers.deptNewRole}")`;
+    //running the query in the database
+    connection.query(query, (err, data) => {
+      if (err) {
+        console.log(err.message);
+        return;
+      } else {
+        start();
+      }
+    });
+  });
+}
 
 //start the app
 start();
