@@ -298,7 +298,7 @@ function updateRole() {
     }
   ]).then(answers => {
     //query to run to insert information
-    const query = `UPDATE role SET title="${answers.roleNewName}", salary="${answers.salaryNewRole}", department_id="${answers.deptNewRole}" WHERE title="${answers.roleName}", salary="${answers.salaryOldRole}", department_id="${answers.deptOldRole}" `;
+    const query = `UPDATE role SET title="${answers.roleNewName}", salary=${answers.salaryNewRole}, department_id="${answers.deptNewRole}" WHERE title="${answers.roleName}" AND salary=${answers.salaryOldRole} AND department_id="${answers.deptOldRole}" `;
     //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
