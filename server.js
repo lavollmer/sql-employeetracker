@@ -196,7 +196,7 @@ function addEmployee() {
     }
   ]).then(answers => {
     //query to run to insert information
-    const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${answers.firstName}","${answers.lastname}", "${answers.deptRole}", "${answers.managerEmployee}")`;
+    const query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${answers.firstName}","${answers.lastName}", "${answers.deptRole}", "${answers.managerEmployee}")`;
     //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
