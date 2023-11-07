@@ -17,7 +17,7 @@ Technical requirements of this project included:
 
 ## Usage
 
-Video Submission:
+Video Submission:https://drive.google.com/file/d/1uXMwpWzpA7uGmgXkYhH47u1YnA36SloA/view
 
 Screenshots of Home Page:![Screenshot of Project](./img/HomePage.png)
 
@@ -38,7 +38,7 @@ Print Table package: https://www.npmjs.com/package/console-table-printer
 
 AskBCS was used to figure out the connection.js file with a Mac computer.
 
-Tutor helped with code in schema.sql: 
+Tutor helped with code in schema.sql (this code was not used in the end): 
 -- select role table title and employee table first name
 SELECT r.title, e.first_name
 -- from employee table --
