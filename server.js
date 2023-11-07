@@ -15,7 +15,7 @@ function start() {
       type: 'list',
       message: "Please select from following:",
       name: 'mainMenu',
-      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View Number of Employees Based on Department", "View Total Utilized Budget of Business", "Quit"]
+      choices: ["View All Departments", "View All Roles", "View All Employees", "Add a department", "Add a role", "Add an Employee", "Remove Employee", "Update an employee role", "View Total Utilized Budget of Business", "Quit"]
     }]).then(answers => {
       //case and switch statement with mainMenu choices
       switch (answers.mainMenu) {
@@ -43,9 +43,9 @@ function start() {
         case 'Update an employee role':
           updateRole();
           break;
-        case 'View Number of Employees Based on Department':
-          viewEmployeeByDept();
-          break;
+        // case 'View Number of Employees Based on Department':
+        //   viewEmployeeByDept();
+        //   break;
         case 'View Total Utilized Budget of Business':
           viewTotalBudget();
           break;
@@ -331,26 +331,26 @@ function updateRole() {
 
 
 //viewEmployeeByDept
-function viewEmployeeByDept() {
-  const query = 'SELECT department.id AS value, department.d_name AS name FROM department';
-  connection.query(query, (err, data) => {
-    if (err) {
-      console.log(err.message);
-      return;
-    } else {
-      inquirer.prompt([
-        {
-          type: 'list',
-          message: 'What department would you like to view the number of employees in?',
-          name: 'deptViewEmployees',
-          choices: data
-        }
-      ]).then(answers =>
-        console.log("The number of employees per department") + console.table(answers)
-      )
-    }
-  });
-}
+// function viewEmployeeByDept() {
+//   const query = 'SELECT department.id AS value, department.d_name AS name FROM department';
+//   connection.query(query, (err, data) => {
+//     if (err) {
+//       console.log(err.message);
+//       return;
+//     } else {
+//       inquirer.prompt([
+//         {
+//           type: 'list',
+//           message: 'What department would you like to view the number of employees in?',
+//           name: 'deptViewEmployees',
+//           choices: data
+//         }
+//       ]).then(answers =>
+//         console.log(console.table(answers)),
+//       )
+//     }
+//   });
+// }
 
 //viewTotalBudget
 function viewTotalBudget() {
