@@ -260,7 +260,7 @@ function removeEmployee() {
     }
   ]).then(answers => {
     //query to run to insert information
-    const query = `DELETE FROM employee (first_name, last_name, role_id, manager_id) WHICH ("${answers.firstName}","${answers.lastname}", "${answers.deptRole}", "${answers.managerEmployee}")`;
+    const query = `DELETE FROM employee (first_name, last_name, role_id, manager_id) WHICH ("${answers.firstName}","${answers.lastName}", "${answers.deptRole}", "${answers.managerEmployee}")`;
     //running the query in the database
     connection.query(query, (err, data) => {
       if (err) {
